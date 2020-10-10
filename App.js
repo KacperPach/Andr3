@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import React, {useState}from 'react';
-import {ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView } from 'react-native';
+import React, {useState, useRef, useEffect}from 'react';
+import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
+
+
 
 function RButton1 () {
   return(
@@ -39,7 +41,30 @@ function RButton1 () {
 
 
 
+
+
+
 export default function App() {
+  const aHight = useRef( new Animated.Value(100)).current;
+
+  const openMe = () => {
+        Animated.timing( aHight, {
+            toValue: 300,
+            duration: 1000,
+            useNativeDriver: true,
+          }
+        ).start();
+  };
+  const closeMe = () => {
+        Animated.timing( aHight, {
+            toValue: 100,
+            duration: 1000,
+            useNativeDriver: true,
+          }
+        ).start();
+  };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -47,14 +72,16 @@ export default function App() {
       </View>
       <ImageBackground source={require('./assets/background.png')} style={styles.image}>
       <Text>HOla!</Text>
-      <Button title='adios'></Button>
+      <Button title='adios' onPress={openMe}></Button>
+      <Button title='fuck go back' onPress={closeMe}></Button>
       </ImageBackground>
-      <View style={styles.bottom}>
-        <RButton1/>
-        <RButton2/>
-        <RButton3/>
-        <RButton4/>
-      </View>
+
+        <Animated.View style={[styles.bottom, {height: aHight}]}>
+          <RButton1/>
+          <RButton2/>
+          <RButton3/>
+          <RButton4/>
+        </Animated.View>
       <StatusBar style="auto" />
     </View>
   );
