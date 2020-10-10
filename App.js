@@ -46,7 +46,7 @@ export default function App() {
         <Text></Text>
       </View>
       <ImageBackground source={require('./assets/background.png')} style={styles.image}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>HOla!</Text>
       <Button title='adios'></Button>
       </ImageBackground>
       <View style={styles.bottom}>
