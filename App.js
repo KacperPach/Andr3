@@ -6,45 +6,54 @@ import { useIsFocused } from '@react-navigation/native';
 
 
 
-function RButton1 () {
-  return(
-    <TouchableOpacity>
-      <View style={styles.circle}>
-        <Ionicons name="md-body" size={30} color="#ef476f" />
-      </View>
-    </TouchableOpacity>
-  );}
-  function RButton2 () {
+export default function App() {
+
+  function RButton1 () {
     return(
-      <TouchableOpacity>
+      <TouchableOpacity onPress={openMe}>
         <View style={styles.circle}>
-          <Ionicons name="md-happy" size={30} color="#ebad21" />
+          <Ionicons name="md-body" size={30} color="#ef476f" />
         </View>
       </TouchableOpacity>
     );}
-    function RButton3 () {
+
+    function RButton2 () {
       return(
         <TouchableOpacity>
           <View style={styles.circle}>
-            <Ionicons name="md-pizza" size={30} color="#06d6a0" />
+            <Ionicons name="md-happy" size={30} color="#ebad21" />
           </View>
         </TouchableOpacity>
       );}
-      function RButton4 () {
+
+      function RButton3 () {
         return(
           <TouchableOpacity>
             <View style={styles.circle}>
-              <Ionicons name="md-pulse" size={30} color="#118ab2" />
+              <Ionicons name="md-pizza" size={30} color="#06d6a0" />
             </View>
           </TouchableOpacity>
         );}
 
+        function RButton4 () {
+          return(
+            <TouchableOpacity>
+              <View style={styles.circle}>
+                <Ionicons name="md-pulse" size={30} color="#118ab2" />
+              </View>
+            </TouchableOpacity>
+          );}
+
+          function RButton5 () {
+            return(
+              <TouchableOpacity onPress={closeMe}>
+                <View style={styles.circle}>
+                  <Ionicons name="md-close" size={24} color="red" />
+                </View>
+              </TouchableOpacity>
+            );}
 
 
-
-
-
-export default function App() {
   const aHight = useRef( new Animated.Value(100)).current;
 
   const openMe = () => {
@@ -70,20 +79,22 @@ export default function App() {
       <ImageBackground source={require('./assets/background.png')} style={styles.image}/>
 
       <View style={styles.top}>
-        <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
-        <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame</Text>
+        <TouchableOpacity>
+            <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center',}}/>
+        </TouchableOpacity>
+        <Text style={{flex: 5, color: 'white', alignSelf: 'right', fontSize: 20, fontWeight: 'bold', textAlign: 'right'}}>HealthPlayingGame</Text>
       </View>
 
-
-      <Text>HOla!</Text>
-      <Button title='adios' onPress={openMe}></Button>
-      <Button title='fuck go back' onPress={closeMe}></Button>
+      <View style={styles.center}>
+          <Text>Avatar</Text>
+      </View>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
           <RButton1/>
           <RButton2/>
           <RButton3/>
           <RButton4/>
+          <RButton5/>
         </Animated.View>
 
       <StatusBar style="auto" />
@@ -136,6 +147,11 @@ const styles = StyleSheet.create({
     backgroundColor:'#e7e7e7',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  
+  center:{
+    color:'black',
+    alignItems:'center',
   },
 
 });
