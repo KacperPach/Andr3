@@ -42,8 +42,6 @@ function RButton1 () {
 
 
 
-
-
 export default function App() {
   const aHight = useRef( new Animated.Value(100)).current;
 
