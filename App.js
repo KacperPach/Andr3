@@ -12,7 +12,7 @@ import RButton4 from './components/button4.js';
 export default function App() {
   const aHight = useRef( new Animated.Value(100)).current;
 
-  const openMe = () => {
+  const openMe = () => {a
         Animated.timing( aHight, {
             toValue: 300,
             duration: 1000,
@@ -45,7 +45,7 @@ export default function App() {
       <Button title='fuck go back' onPress={closeMe}></Button>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
-          <RButton1/>
+          <RButton1 onClick={openMe}/>
           <RButton2/>
           <RButton3/>
           <RButton4/>
