@@ -1,0 +1,3 @@
+ <TouchableOpacity onPress={() => Drawer.navigation.openDrawer()}>
+          <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
+        </TouchableOpacity>

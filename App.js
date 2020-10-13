@@ -1,17 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import React, {useState, useRef, useEffect}from 'react';
+import {useState, useRef, useEffect} from 'react';
 import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import  RButton1  from './components/button.js';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { withNavigation } from 'react-navigation';
+import React from 'react';
+
+import RButton1  from './components/button.js';
 import RButton2 from './components/button2.js';
 import RButton3 from './components/button3.js';
 import RButton4 from './components/button4.js';
 
 
-export default function App() {
-  const aHight = useRef( new Animated.Value(100)).current;
+const Drawer = createDrawerNavigator();
 
+
+function Home({ navigation }){
+
+  const aHight = useRef( new Animated.Value(100)).current;
+  
   const openMe = () => {
         Animated.timing( aHight, {
             toValue: 300,
@@ -27,7 +36,6 @@ export default function App() {
         ).start();
   };
 
-
   return (
 
     <View style={styles.container}>
@@ -35,13 +43,15 @@ export default function App() {
       <ImageBackground source={require('./assets/background.png')} style={styles.image}/>
 
       <View style={styles.top}>
-        <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
+      <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
+        </TouchableOpacity>
         <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame</Text>
       </View>
 
 
       <Text>HOla!</Text>
-      <Button title='adios' onPress={openMe}></Button>
+      <Button title='adios' onPress={() =>navigation.openDrawer()}></Button>
       <Button title='fuck go back' onPress={closeMe}></Button>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
@@ -55,6 +65,23 @@ export default function App() {
     </View>
   );
 }
+
+export default function App(){
+
+return(
+
+  <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={Home} />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  
+
+);
+}
+
+
+
 
 const styles = StyleSheet.create({
   image: {
