@@ -4,9 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-const RButton2 = () => {
+const RButton2 = ({onPress}) => {
     return(
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <View style={styles.circle}>
           <Ionicons name="md-happy" size={30} color="#ebad21" />
         </View>

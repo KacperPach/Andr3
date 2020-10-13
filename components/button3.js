@@ -3,9 +3,9 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const RButton3 = () => {
+const RButton3 = ({onPress}) => {
       return(
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onPress}>
           <View style={styles.circle}>
             <Ionicons name="md-pizza" size={30} color="#06d6a0" />
           </View>

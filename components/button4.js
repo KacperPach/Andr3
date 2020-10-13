@@ -3,9 +3,9 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 
 
-const RButton4 = () => {
+const RButton4 = ({onPress}) => {
         return(
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onPress}>
             <View style={styles.circle}>
               <Ionicons name="md-pulse" size={30} color="#118ab2" />
             </View>
