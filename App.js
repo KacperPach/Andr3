@@ -3,43 +3,10 @@ import { Ionicons } from '@expo/vector-icons';
 import React, {useState, useRef, useEffect}from 'react';
 import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-
-
-
-function RButton1 () {
-  return(
-    <TouchableOpacity>
-      <View style={styles.circle}>
-        <Ionicons name="md-body" size={30} color="#ef476f" />
-      </View>
-    </TouchableOpacity>
-  );}
-  function RButton2 () {
-    return(
-      <TouchableOpacity>
-        <View style={styles.circle}>
-          <Ionicons name="md-happy" size={30} color="#ebad21" />
-        </View>
-      </TouchableOpacity>
-    );}
-    function RButton3 () {
-      return(
-        <TouchableOpacity>
-          <View style={styles.circle}>
-            <Ionicons name="md-pizza" size={30} color="#06d6a0" />
-          </View>
-        </TouchableOpacity>
-      );}
-      function RButton4 () {
-        return(
-          <TouchableOpacity>
-            <View style={styles.circle}>
-              <Ionicons name="md-pulse" size={30} color="#118ab2" />
-            </View>
-          </TouchableOpacity>
-        );}
-
-
+import  RButton1  from './components/button.js';
+import RButton2 from './components/button2.js';
+import RButton3 from './components/button3.js';
+import RButton4 from './components/button4.js';
 
 
 export default function App() {
