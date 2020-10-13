@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import React, {useState, useRef, useEffect}from 'react';
-import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import  RButton1  from './components/button.js';
 import RButton2 from './components/button2.js';
@@ -10,6 +10,15 @@ import RButton4 from './components/button4.js';
 
 
 export default function App() {
+
+  useEffect(()=> {
+
+    const backHandeler = BackHandler.addEventListener("hardwareBackPress", closeMe );
+    return () => backHandler.remove();
+
+
+  }, []) ;
+
   const aHight = useRef( new Animated.Value(100)).current;
 
   const openMe = () => {
