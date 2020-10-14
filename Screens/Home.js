@@ -14,24 +14,56 @@ import RButton4 from './../components/button4.js';
 export default function  Home({ navigation }){
 
 
- // useEffect(()=> {
 
- //   const backHandeler = BackHandler.addEventListener("hardwareBackPress", closeMe );
-  //  return () => backHandler.remove();
-
-
- // }, []) ;
+  const [buttonstate, setButtonState] = useState(2);
 
   const aHight = useRef( new Animated.Value(100)).current;
 
 
-  const openMe = () => {
+  const openMe1 = () => {
+
+        setButtonState(1);
+
         Animated.timing( aHight, {
             toValue: 300,
             duration: 1000,
           }
         ).start();
   };
+  
+  const openMe2 = () => {
+
+    setButtonState(2);
+
+    Animated.timing( aHight, {
+        toValue: 300,
+        duration: 1000,
+      }
+    ).start();
+};
+
+const openMe3 = () => {
+
+  setButtonState(3);
+
+  Animated.timing( aHight, {
+      toValue: 300,
+      duration: 1000,
+    }
+  ).start();
+};
+
+const openMe4 = () => {
+
+  setButtonState(4);
+
+  Animated.timing( aHight, {
+      toValue: 300,
+      duration: 1000,
+    }
+  ).start();
+};
+
   const closeMe = () => {
         Animated.timing( aHight, {
             toValue: 100,
@@ -39,6 +71,21 @@ export default function  Home({ navigation }){
           }
         ).start();
   };
+
+  function BContainetr(props) {
+    const OnScreen = props.OnScreen;
+    if(OnScreen == 1) 
+    {
+      return(<Text>Ekran 1</Text>);
+    }
+    else if(OnScreen == 2){ return(<Text>Ekran 2</Text>); }
+    else if(OnScreen == 3){ return(<Text>Ekran 3</Text>);}
+    else if(OnScreen == 4){ return(<Text>Ekran 4</Text>); }
+    else {
+      return(<View></View>);
+    }
+  }
+
 
   return (
 
@@ -50,20 +97,24 @@ export default function  Home({ navigation }){
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
         </TouchableOpacity>
-        <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame</Text>
+        <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame {buttonstate}</Text>
       </View>
 
 
-      <Text>HOla!</Text>
+      
       <Button title='adios' onPress={() =>navigation.openDrawer()}></Button>
+      
       <Button title='fuck go back' onPress={closeMe}></Button>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
-          <RButton1 onPress={openMe}/>
-          <RButton2 onPress={openMe}/>
-          <RButton3 onPress={openMe}/>
-          <RButton4 onPress={openMe}/>
-        </Animated.View>
+          <RButton1 onPress={openMe1} state={buttonstate}/>
+          <RButton2 onPress={openMe2} state={buttonstate}/>
+          <RButton3 onPress={openMe3} state={buttonstate}/>
+          <RButton4 onPress={openMe4} state={buttonstate}/>
+          <BContainetr OnScreen={buttonstate}/>
+        </Animated.View>  
+        
+         
 
       <StatusBar style="auto" />
     </View>

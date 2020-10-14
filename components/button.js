@@ -1,9 +1,12 @@
 import { StyleSheet, Text,  TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import Animated from 'react-native-reanimated';
 
 
-const RButton1 = ({onPress}) => {
+const RButton1 = ({onPress, state}) => {
+
+
   return(
     <TouchableOpacity onPress={onPress}>
       <View style={styles.circle}>
