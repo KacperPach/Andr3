@@ -1,33 +1,52 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, {useState, useRef, useEffect} from 'react';
-import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
+import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler, FlatList} from 'react-native';
 
 
 export default function Statistics({ navigation }){
 
-    const [BState, setBState] = useState(1);
 
+    function Quest(props) {
 
-    
-
-    function BClicked(props) {
-
+        const content = props.content;
+        const [BState, setBState] = useState(1);
         
-        
-        const Bstate = props.Bstate;
 
-        if(Bstate == 1) 
+        if(BState == 1) 
         {
-          return(<TouchableOpacity style={styles.quest}></TouchableOpacity>);
+          return(<TouchableOpacity style={styles.quest}>
+            <Text>{content}</Text>
+            <Button title="Hola" onPress={() =>setBState(2)}></Button>
+          </TouchableOpacity>);
         }
-        else if(Bstate == 2)
+        else if(BState == 2)
         { 
-            return(<TouchableOpacity style={styles.quest2}></TouchableOpacity>); 
+          return(<TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
+          <Text>{content}</Text>
+          <Button title="Hola" onPress={() =>setBState(1)}></Button>
+        </TouchableOpacity>);
         }
         else 
         {
           return(<TouchableOpacity style={styles.quest}></TouchableOpacity>);
         }
+      }
+
+      const List = () => {
+        return(
+          <View>
+            <FlatList
+               data={[
+              {key: 'idź na siłownie'},
+              {key: 'Biegnij przez 5 min na bierzni'},
+              {key: 'medytuj przez 15 min'},
+           
+              ]}
+              renderItem={({item}) => <Quest content={item.key}/>}
+
+            />
+          </View>
+        );
       }
 
   return(
@@ -46,8 +65,7 @@ export default function Statistics({ navigation }){
     </View>
     
     <View>
-    <BClicked style={styles.quest} onPress={() => setBState(2)} Bstate={BState}></BClicked>  
-    <Text style={{color:'white'}}>Walnij wiadro</Text>
+    <List/> 
     </View>
    
     </View>
@@ -70,12 +88,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         backgroundColor:'grey',
         height: 80,
+        flexDirection: 'row',
     },
-    quest2:{
-        alignItems:'center',
-        backgroundColor:'green',
-        height: 80,
-    },
+
     container:{
       flex: 1,
       backgroundColor: '#fff',
