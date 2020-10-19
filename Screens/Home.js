@@ -15,14 +15,12 @@ export default function  Home({ navigation }){
 
 
 
-  const [buttonstate, setButtonState] = useState(2);
+  const [buttonstate, setButtonState] = useState(0);
 
   const aHight = useRef( new Animated.Value(100)).current;
 
 
-  const openMe1 = () => {
-
-        setButtonState(1);
+  const openMe = () => {
 
         Animated.timing( aHight, {
             toValue: 300,
@@ -31,38 +29,6 @@ export default function  Home({ navigation }){
         ).start();
   };
   
-  const openMe2 = () => {
-
-    setButtonState(2);
-
-    Animated.timing( aHight, {
-        toValue: 300,
-        duration: 1000,
-      }
-    ).start();
-};
-
-const openMe3 = () => {
-
-  setButtonState(3);
-
-  Animated.timing( aHight, {
-      toValue: 300,
-      duration: 1000,
-    }
-  ).start();
-};
-
-const openMe4 = () => {
-
-  setButtonState(4);
-
-  Animated.timing( aHight, {
-      toValue: 300,
-      duration: 1000,
-    }
-  ).start();
-};
 
   const closeMe = () => {
         Animated.timing( aHight, {
@@ -76,13 +42,52 @@ const openMe4 = () => {
     const OnScreen = props.OnScreen;
     if(OnScreen == 1) 
     {
-      return(<Text>Ekran 1</Text>);
+      return(
+
+
+       <View>
+        <Text>Ekran 1</Text>
+       </View> 
+    
+    
+     
+      );
     }
-    else if(OnScreen == 2){ return(<Text>Ekran 2</Text>); }
-    else if(OnScreen == 3){ return(<Text>Ekran 3</Text>);}
-    else if(OnScreen == 4){ return(<Text>Ekran 4</Text>); }
+    else if(OnScreen == 2){ return( //Ekran po kliknięciu przyciusku 2
+    
+    
+    
+      <View>
+      <Text>Ekran 2</Text>
+     </View> 
+    
+      ); }
+    else if(OnScreen == 3){ return(
+      
+      
+      
+      <View>
+      <Text>Ekran 3</Text>
+     </View> 
+      
+      
+      );}
+    else if(OnScreen == 4){ return(
+
+
+
+      <View>
+      <Text>Ekran 4</Text>
+     </View> 
+      
+      ); }
     else {
-      return(<View></View>);
+      return(
+      
+      
+      <View></View>
+
+      );
     }
   }
 
@@ -107,10 +112,12 @@ const openMe4 = () => {
       <Button title='fuck go back' onPress={closeMe}></Button>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
-          <RButton1 onPress={openMe1} state={buttonstate}/>
-          <RButton2 onPress={openMe2} state={buttonstate}/>
-          <RButton3 onPress={openMe3} state={buttonstate}/>
-          <RButton4 onPress={openMe4} state={buttonstate}/>
+          <View style={styles.buttonContainer} >
+          <RButton1 onPress={() => {openMe(); setButtonState(1); } } state={buttonstate}/>
+          <RButton2 onPress={() => {openMe(); setButtonState(2); }} state={buttonstate}/>
+          <RButton3 onPress={() => {openMe(); setButtonState(3); }} state={buttonstate}/>
+          <RButton4 onPress={() => {openMe(); setButtonState(4); }} state={buttonstate}/>
+          </View>
           <BContainetr OnScreen={buttonstate}/>
         </Animated.View>  
         
@@ -139,6 +146,13 @@ const styles = StyleSheet.create({
       alignItems: 'stretch',
       backgroundColor: '#909090'
     },
+
+    buttonContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+     
+
+    },
   
     top:{
       flexDirection: 'row',
@@ -153,9 +167,9 @@ const styles = StyleSheet.create({
       borderTopRightRadius: 12,
       height:100,
       backgroundColor: '#4b4b4d',
-      justifyContent: 'space-around',
-      flexDirection: 'row',
+      flexDirection: 'column',
       padding: 15,
+      alignItems: 'stretch',
   
   
     },
