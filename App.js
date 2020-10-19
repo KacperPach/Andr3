@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import Home from './Screens/Home.js';
 import Settings from './Screens/Settings.js';
+import Statistics from './Screens/Statistics.js';
 
 
 const Drawer = createDrawerNavigator();
@@ -17,6 +18,7 @@ return(
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="Settings" component={Settings} />
+        <Drawer.Screen name="Statistics" component={Statistics} />
       </Drawer.Navigator>
     </NavigationContainer>
 
