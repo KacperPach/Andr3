@@ -6,11 +6,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './Screens/Home.js';
 import Settings from './Screens/Settings.js';
 import Statistics from './Screens/Statistics.js';
-
+import QuestData from './components/quests.json';
 
 const Drawer = createDrawerNavigator();
 
+const newQuestData = QuestData.map( ( QuestData) =>
+{
+  console.log(QuestData.type)
+})
 export default function App(){
+
+
 
 return(
 
