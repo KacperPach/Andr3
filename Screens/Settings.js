@@ -9,12 +9,14 @@ export default function Settings({ navigation }){
     <View style={styles.container}>
 
     <ImageBackground source={require('./../assets/ProfileScreen.jpg')} style={styles.image}/>
+    
     <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
         <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
       </TouchableOpacity>
       <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame</Text>
     </View>
+    
     <View> 
     <Text style={{color: 'white'}}>Version 0.1.0</Text>
     </View>

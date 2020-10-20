@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import React, {useState, useRef, useEffect} from 'react';
-import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
+import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
 
-import RButton1  from './../components/button.js';
+import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
 import RButton3 from './../components/button3.js';
 import RButton4 from './../components/button4.js';
@@ -45,8 +45,11 @@ export default function  Home({ navigation }){
       return(
 
 
-       <View>
-        <Text>Ekran 1</Text>
+       <View style={styles.Smolcontainer}>
+       
+       <Image source={require('./../assets/ProfileBar.png')} style={styles.imageBar}/>
+       
+       <Text>Ekran 1</Text>
        </View> 
     
     
@@ -57,7 +60,7 @@ export default function  Home({ navigation }){
     
     
     
-      <View>
+      <View style={styles.Smolcontainer}>
       <Text>Ekran 2</Text>
      </View> 
     
@@ -66,7 +69,7 @@ export default function  Home({ navigation }){
       
       
       
-      <View>
+      <View style={styles.Smolcontainer}>
       <Text>Ekran 3</Text>
      </View> 
       
@@ -76,7 +79,7 @@ export default function  Home({ navigation }){
 
 
 
-      <View>
+      <View style={styles.Smolcontainer}>
       <Text>Ekran 4</Text>
      </View> 
       
@@ -139,6 +142,22 @@ const styles = StyleSheet.create({
       right:0,
   
     },
+    imageBar: {
+      flex: 1,
+      resizeMode: "cover",
+      position: 'absolute',
+      width:150,
+      height: 150,
+  
+    },
+    Smolcontainer:{
+      flex: 1,
+      backgroundColor: 'white',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      top: 30,
+    },
+
     container:{
       flex: 1,
       backgroundColor: '#fff',
