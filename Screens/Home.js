@@ -94,25 +94,46 @@ export default function  Home({ navigation }){
     }
   }
 
+  const User = () => 
+  {
+
+    return( 
+    <>
+    
+    <View style={{position: 'absolute', backgroundColor: 'blue', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
+    <Image source={require('./../assets/avatar.png')} style={{width: 280, height: 320, position: 'absolute', top: 80, left:-70}}></Image>
+    </>
+    );
+  }
+
 
   return (
 
     <View style={styles.container}>
 
-      <ImageBackground source={require('./../assets/background.png')} style={styles.image}/>
+    <ImageBackground source={require('./../assets/background.png')} style={styles.image}/>
+
+    <User style={{position: 'absolute', top: 200}}/>
+      
+
+    
 
       <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
         </TouchableOpacity>
         <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame {buttonstate}</Text>
+      
       </View>
-
-
+        
+      <View> 
       
-      <Button title='adios' onPress={() =>navigation.openDrawer()}></Button>
+       </View>
       
-      <Button title='fuck go back' onPress={closeMe}></Button>
+
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
           <View style={styles.buttonContainer} >
@@ -123,8 +144,6 @@ export default function  Home({ navigation }){
           </View>
           <BContainetr OnScreen={buttonstate}/>
         </Animated.View>  
-        
-         
 
       <StatusBar style="auto" />
     </View>
