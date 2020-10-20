@@ -5,9 +5,10 @@ import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, V
 
 export default function Statistics({ navigation }){
 
+  const [Counter, setCState] = useState(0);
+  
 
     function Quest(props) {
-
         const content = props.content;
         const [BState, setBState] = useState(1);
         
@@ -16,7 +17,7 @@ export default function Statistics({ navigation }){
         {
           return(<TouchableOpacity style={styles.quest}>
             <Text>{content}</Text>
-            <Button title="Hola" onPress={() =>setBState(2)}></Button>
+            <Button title="Hola" onPress={() =>setBState(2), () =>setCState(Counter + 1)}></Button>
           </TouchableOpacity>);
         }
         else if(BState == 2)
@@ -67,7 +68,7 @@ export default function Statistics({ navigation }){
     <View>
     <List/> 
     </View>
-   
+      <Text>Done: {Counter}/3 </Text>
     </View>
   );
 
