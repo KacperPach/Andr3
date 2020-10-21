@@ -34,7 +34,47 @@
     {
         "type" : "rest",
         "tier" : 2,
-        "questionText" : "try to meditate for 15 minutes" 
+        "questionText" : "Try to meditate for 15 minutes" 
+    },
+
+    {
+        "type" : "food",
+        "tier" : 1,
+        "questionText" : "It's cheat day!"
+    },
+    
+    {
+        "type" : "activity",
+        "tier" : 2,
+        "questionText" : "Encourage your friend to train with you!"
+    },
+
+    {
+        "type" : "rest",
+        "tier" : 1,
+        "questionText" : "Don't use phone after 9 p.m."
+
+    },
+
+    {
+        "type" : "food",
+        "tier" : 3,
+        "questionText" : "Eat fish for a dinner"
+
+    },
+
+    {
+        "type" : "activity",
+        "tier" : 2,
+        "questionText" : "Try a team sport"
+
+    },
+
+    {
+        "type" : "rest",
+        "tier" : 3,
+        "questionText" : "Read a book"
+
     }
 
 ]

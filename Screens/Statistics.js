@@ -2,10 +2,12 @@ import { Ionicons } from '@expo/vector-icons';
 import React, {useState, useRef, useEffect} from 'react';
 import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler, FlatList} from 'react-native';
 
+import Clock from './../components/clockquest.js';
 
 export default function Statistics({ navigation }){
 
     const [Counter, setCState] = useState(0);
+    const [i, setIState] = useState(0);
    
     function Quest(props) {
         const content = props.content;
@@ -48,6 +50,19 @@ export default function Statistics({ navigation }){
         }
       }
 
+      const QuestSet = () => {
+      
+        setIState(i+1);
+        console.log(i);
+        
+        if(i+3 >= 12)
+        {
+          setIState(0)
+        }
+      }
+
+
+
 
 
       const List = () => {
@@ -56,9 +71,9 @@ export default function Statistics({ navigation }){
           <View>
             <FlatList
                data={[
-              {key: customData[0].questionText},
-              {key: customData[4].questionText},
-              {key: customData[2].questionText},
+              {key: customData[i].questionText},
+              {key: customData[i+1].questionText},
+              {key: customData[i+2].questionText},
            
               ]}
               renderItem={({item}) => <Quest content={item.key}/>}
@@ -87,7 +102,8 @@ export default function Statistics({ navigation }){
     <List/> 
     </View>
 
-
+    <Button  title = "change quests" onPress={() => QuestSet()}></Button>
+    <Button  title = "show time" onPress={() => Clock()}></Button>
     <Text>Done: {Counter}/3 </Text>
     </View>
   );

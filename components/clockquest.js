@@ -1,7 +1,7 @@
 import { StyleSheet, Text,  TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-const Clock = () => {
+function Clock(){
 
     let date = new Date().getDate();
     let month = new Date().getMonth() + 1;
