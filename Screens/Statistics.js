@@ -5,8 +5,8 @@ import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, V
 
 export default function Statistics({ navigation }){
 
-  const [Counter, setCState] = useState(0);
-
+    const [Counter, setCState] = useState(0);
+   
     function Quest(props) {
         const content = props.content;
         const [BState, setBState] = useState(1);
@@ -57,7 +57,7 @@ export default function Statistics({ navigation }){
             <FlatList
                data={[
               {key: customData[0].questionText},
-              {key: customData[1].questionText},
+              {key: customData[4].questionText},
               {key: customData[2].questionText},
            
               ]}

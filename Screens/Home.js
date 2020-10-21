@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import React, {useState, useRef, useEffect} from 'react';
+import React, {Component, useState, useRef, useEffect} from 'react';
 import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
 
 import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
 import RButton3 from './../components/button3.js';
 import RButton4 from './../components/button4.js';
-
+import Clock from './../components/clockquest.js';
 
 
 
@@ -18,10 +18,8 @@ export default function  Home({ navigation }){
   const [buttonstate, setButtonState] = useState(0);
 
   const aHight = useRef( new Animated.Value(100)).current;
-
-  let date = new Date().getTime();
-
-
+  
+  
   const openMe = () => {
 
         Animated.timing( aHight, {
@@ -63,7 +61,7 @@ export default function  Home({ navigation }){
     
     
       <View style={styles.Smolcontainer}>
-      <Text>{date}</Text>
+      <Text>Ekran 2</Text>
      </View> 
     
       ); }
@@ -73,6 +71,7 @@ export default function  Home({ navigation }){
       
       <View style={styles.Smolcontainer}>
       <Text>Ekran 3</Text>
+      <Button onPress={() => Clock()}></Button>
      </View> 
       
       

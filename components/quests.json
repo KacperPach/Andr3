@@ -9,7 +9,7 @@
     {
         "type" : "activity",
         "tier" : 2,
-        "questionText" : "Exercise for a 15 minutes"
+        "questionText" : "Exercise for 15 minutes"
     },
     
     
@@ -17,6 +17,24 @@
         "type" : "rest",
         "tier" : 3,
         "questionText" : "Try to sleep 8 hours today "
+    },
+
+    {
+        "type" : "food",
+        "tier" : 2,
+        "questionText" : "Eat more fruits than usual"
+    },
+
+    {
+        "type" : "activity",
+        "tier" : 1,
+        "questionText" : "Go for a walk"
+    },
+
+    {
+        "type" : "rest",
+        "tier" : 2,
+        "questionText" : "try to meditate for 15 minutes" 
     }
 
 ]
