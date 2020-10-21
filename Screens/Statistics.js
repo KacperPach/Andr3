@@ -10,27 +10,49 @@ export default function Statistics({ navigation }){
     function Quest(props) {
         const content = props.content;
         const [BState, setBState] = useState(1);
+
         
+     
 
         if(BState == 1) 
         {
-          return(<TouchableOpacity style={styles.quest}>
-            <Text>{content}</Text>
-            <Button title="Hola" onPress={() =>  setBState(2)}></Button>
-          </TouchableOpacity>);
+
+
+          return(
+          <TouchableOpacity style={styles.quest}>
+          <Text>{content}</Text>
+          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() => { setBState(2)}}>
+          <Ionicons name="ios-checkmark" size={30} color="black" style={{alignSelf:'center'}}/>
+          </TouchableOpacity>
+       
+          </TouchableOpacity>
+          );
         }
         else if(BState == 2)
         { 
           
-          return(<TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
+          setCState(Counter + 1);
+          
+          return(
+          <TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
           <Text>{content}</Text>
-          <Button title="Hola" onPress={() => setBState(2)}></Button>
-        </TouchableOpacity>);
+          <TouchableOpacity style={[styles.button, {backgroundColor: 'red'}]} onPress={() => setBState(1)}>
+          <Ionicons name="ios-close" size={30} color="black" style={{alignSelf:'center'}}/>
+          </TouchableOpacity>
+
+          </TouchableOpacity>
+          );
         }
         else 
         {
           return(<TouchableOpacity style={styles.quest}></TouchableOpacity>);
         }
+      }
+
+
+      const del = () => 
+      {
+
       }
 
       const List = () => {
@@ -40,7 +62,7 @@ export default function Statistics({ navigation }){
                data={[
               {key: 'idź na siłownie'},
               {key: 'Biegnij przez 5 min na bierzni'},
-              {key: 'medytuj przez 15 min'},
+              {key: 'medytuj przez 10 min'},
            
               ]}
               renderItem={({item}) => <Quest content={item.key}/>}
@@ -68,7 +90,9 @@ export default function Statistics({ navigation }){
     <View>
     <List/> 
     </View>
-      <Text>Done: {Counter}/3 </Text>
+
+
+    <Text>Done: {Counter}/3 </Text>
     </View>
   );
 
@@ -106,6 +130,13 @@ const styles = StyleSheet.create({
       backgroundColor: '#4b4b4d',
       alignItems: 'flex-start',
       padding: 25
+    },
+    button: {
+      width: 50,
+      height: 50,
+      borderRadius: 30,
+      justifyContent: 'center',
+
     },
   
    
