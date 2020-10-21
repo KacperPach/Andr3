@@ -10,10 +10,9 @@ import QuestData from './components/quests.json';
 
 const Drawer = createDrawerNavigator();
 
-const newQuestData = QuestData.map( ( QuestData) =>
-{
-  console.log(QuestData.type)
-})
+const customData = require('./components/quests.json');
+console.log(customData[0].type);
+
 export default function App(){
 
 

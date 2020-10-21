@@ -2,14 +2,14 @@
     {
         "type" : "food",
         "tier": 1,
-        "questText":"Eat 5 fruits today"
+        "questionText":"Eat 5 fruits today"
     },
     
     
     {
         "type" : "activity",
         "tier" : 2,
-        "questText": "Exercise for a 15 minutes"
+        "questionText" : "Exercise for a 15 minutes"
     },
     
     

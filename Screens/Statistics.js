@@ -17,11 +17,11 @@ export default function Statistics({ navigation }){
         if(BState == 1) 
         {
 
-
+          
           return(
           <TouchableOpacity style={styles.quest}>
           <Text>{content}</Text>
-          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() => { setBState(2)}}>
+          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() =>  setBState(2)}>
           <Ionicons name="ios-checkmark" size={30} color="black" style={{alignSelf:'center'}}/>
           </TouchableOpacity>
        
@@ -31,7 +31,6 @@ export default function Statistics({ navigation }){
         else if(BState == 2)
         { 
           
-          setCState(Counter + 1);
           
           return(
           <TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
@@ -50,19 +49,16 @@ export default function Statistics({ navigation }){
       }
 
 
-      const del = () => 
-      {
-
-      }
 
       const List = () => {
+        const customData = require('./../components/quests.json');
         return(
           <View>
             <FlatList
                data={[
-              {key: 'idź na siłownie'},
-              {key: 'Biegnij przez 5 min na bierzni'},
-              {key: 'medytuj przez 10 min'},
+              {key: customData[0].questionText},
+              {key: customData[1].questionText},
+              {key: customData[2].questionText},
            
               ]}
               renderItem={({item}) => <Quest content={item.key}/>}
