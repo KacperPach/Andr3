@@ -19,6 +19,8 @@ export default function  Home({ navigation }){
 
   const aHight = useRef( new Animated.Value(100)).current;
 
+  let date = new Date().getTime();
+
 
   const openMe = () => {
 
@@ -61,7 +63,7 @@ export default function  Home({ navigation }){
     
     
       <View style={styles.Smolcontainer}>
-      <Text>Ekran 2</Text>
+      <Text>{date}</Text>
      </View> 
     
       ); }
