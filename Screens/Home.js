@@ -1,24 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import React, {Component, useState, useRef, useEffect} from 'react';
-import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
+import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler , TextInput} from 'react-native';
 
 import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
 import RButton3 from './../components/button3.js';
 import RButton4 from './../components/button4.js';
+
 import Clock from './../components/clockquest.js';
 
+import InputScreen1 from '../components/InputScreen1.js';
+import InputScreen2 from '../components/InputScreen2.js';
+import InputScreen3 from '../components/InputScreen3.js';
+import InputScreen4 from '../components/InputScreen4.js';
 
 
 export default function  Home({ navigation }){
 
-
-
-  const [buttonstate, setButtonState] = useState(0);
+  const [buttonstate, setButtonState] = useState();
 
   const aHight = useRef( new Animated.Value(100)).current;
-  
   
   const openMe = () => {
 
@@ -38,57 +40,34 @@ export default function  Home({ navigation }){
         ).start();
   };
 
-  function BContainetr(props) {
+  const BContainetr = (props) => {
     const OnScreen = props.OnScreen;
     if(OnScreen == 1) 
     {
       return(
 
+      <InputScreen1></InputScreen1>
 
-       <View style={styles.Smolcontainer}>
-       
-       <Image source={require('./../assets/ProfileBar.png')} style={styles.imageBar}/>
-       
-       <Text>Ekran 1</Text>
-       </View> 
-    
-    
-     
       );
     }
     else if(OnScreen == 2){ return( //Ekran po kliknięciu przyciusku 2
     
-    
-    
-      <View style={styles.Smolcontainer}>
-      <Text>Ekran 2</Text>
-     </View> 
-    
+      <InputScreen2></InputScreen2>
+
       ); }
     else if(OnScreen == 3){ return(
       
-      
-      
-      <View style={styles.Smolcontainer}>
-      <Text>Ekran 3</Text>
-      <Button onPress={() => Clock()}></Button>
-     </View> 
-      
+      <InputScreen3></InputScreen3>
       
       );}
     else if(OnScreen == 4){ return(
 
-
-
-      <View style={styles.Smolcontainer}>
-      <Text>Ekran 4</Text>
-     </View> 
+     <InputScreen4></InputScreen4>
       
       ); }
     else {
       return(
-      
-      
+            
       <View></View>
 
       );
@@ -110,7 +89,6 @@ export default function  Home({ navigation }){
     );
   }
 
-
   return (
 
     <View style={styles.container}>
@@ -118,9 +96,6 @@ export default function  Home({ navigation }){
     <ImageBackground source={require('./../assets/background.png')} style={styles.image}/>
 
     <User style={{position: 'absolute', top: 200}}/>
-      
-
-    
 
       <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -134,8 +109,6 @@ export default function  Home({ navigation }){
       
        </View>
       
-
-
         <Animated.View style={[styles.bottom, {height: aHight}]}>
           <View style={styles.buttonContainer} >
           <RButton1 onPress={() => {openMe(); setButtonState(1); } } state={buttonstate}/>
@@ -170,14 +143,6 @@ const styles = StyleSheet.create({
       height: 150,
   
     },
-    Smolcontainer:{
-      flex: 1,
-      backgroundColor: 'white',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      top: 30,
-    },
-
     container:{
       flex: 1,
       backgroundColor: '#fff',
@@ -190,7 +155,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-around',
      
-
     },
   
     top:{

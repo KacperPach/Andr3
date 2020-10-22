@@ -13,13 +13,9 @@ export default function Statistics({ navigation }){
         const content = props.content;
         const [BState, setBState] = useState(1);
 
-        
-     
-
         if(BState == 1) 
         {
 
-          
           return(
           <TouchableOpacity style={styles.quest}>
           <Text>{content}</Text>
@@ -32,7 +28,6 @@ export default function Statistics({ navigation }){
         }
         else if(BState == 2)
         { 
-          
           
           return(
           <TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
@@ -60,10 +55,6 @@ export default function Statistics({ navigation }){
           setIState(0)
         }
       }
-
-
-
-
 
       const List = () => {
         const customData = require('./../components/quests.json');
@@ -151,6 +142,5 @@ const styles = StyleSheet.create({
 
     },
   
-   
   });
   
