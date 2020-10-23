@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'; 
   
   
   
 function InputScreen2(props){
+  
+  const [Smile, setSmile] = useState(0);
+
+  if(Smile == 0)
+  {
   return(
+  <View style={styles.SmolcontainerC}>
+      <View>
+      <Text style={styles.titleInput}>How do you feel today?</Text>
+      </View>
+      <TouchableOpacity onClick={() => setSmile(1)}>
+      <View style={styles.circle}>
+        <Ionicons name="md-happy" size={30} color="#ef476f" />
+      </View>
+      </TouchableOpacity>
+  
+      <TouchableOpacity onClick={{backgroundColor:'red'}}>
+      <View style={styles.circle}>
+        <Ionicons name="md-sad" size={30} color="#ef476f" />
+      </View>
+      </TouchableOpacity>
+     </View> 
+  );
+  }
+  else if(Smile == 1)
   <View style={styles.SmolcontainerC}>
       <View>
       <Text style={styles.titleInput}>How do you feel today?</Text>
@@ -22,7 +46,11 @@ function InputScreen2(props){
       </View>
       </TouchableOpacity>
      </View> 
-  );
+
+
+
+
+
 }
 
 export default InputScreen2;

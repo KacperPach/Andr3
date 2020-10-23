@@ -1,21 +1,30 @@
 import React, {useState} from 'react';
 
-import {StyleSheet, Text, TouchableOpacity, View, TextInput} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList} from 'react-native';
 
 
 
 function InputScreen1(props) {
-   
+
+    const [NextLine, setNL] = useState([])
+
     const [Goal, setGoal] = useState('');
     
     return (
         <View style={styles.Smolcontainer}>
        
        <Text style={styles.titleInput}>My goals:</Text>
-       <TextInput style={styles.inputtext}   placeholder='Type your goals' value={Goal} onChangeText={Goal => setGoal(Goal)}></TextInput>
-      <TouchableOpacity style={styles.inputtextButton} onPress={console.log(Goal)} >
-      <Text>{Goal}</Text>
-      </TouchableOpacity>
+       <TextInput style={styles.inputtext}  placeholder='Type your goals' value={Goal} onChangeText={Goal => setGoal(Goal)}></TextInput>
+     
+      <View style={styles.SmolcontainerContent}>
+     <FlatList
+      data={[
+          {key: Goal },
+          
+        ]}
+        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+      />
+        </View>
        </View> 
     );
     
@@ -38,6 +47,7 @@ titleInput:{
   },
   Smolcontainer:{
     flex: 1,
+    flexDirection: 'row',
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -51,4 +61,16 @@ titleInput:{
     borderRadius: 10,
     alignItems: 'center',
   },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+  SmolcontainerContent:{
+    flex:1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    width: '50%',
+    height: '100%',
+  }
 });
