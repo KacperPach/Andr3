@@ -25,7 +25,7 @@ export default function  Home({ navigation }){
 
   const aHight = useRef( new Animated.Value(100)).current;
 
-  const [stats, setStats] = useState({energy: 0, health: 0, energy: 0, expiriance: 0});
+  const [stats, setStats] = useState({energy: 0, health: 0, quest: 0, expiriance: 0});
 
   const save = async() => { //zapisuje "energię" 
     try {   // try bo jest asynchroniczne i nie wykonuje się zawsze od razu czasem sie nie udaje

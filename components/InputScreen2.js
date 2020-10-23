@@ -7,21 +7,23 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 function InputScreen2(props){
   
   const [Smile, setSmile] = useState(0);
-
+  
   if(Smile == 0)
   {
+
   return(
+  
   <View style={styles.SmolcontainerC}>
       <View>
       <Text style={styles.titleInput}>How do you feel today?</Text>
       </View>
-      <TouchableOpacity onClick={() => setSmile(1)}>
+      <TouchableOpacity onPress={() => setSmile(1)}>
       <View style={styles.circle}>
         <Ionicons name="md-happy" size={30} color="#ef476f" />
       </View>
       </TouchableOpacity>
   
-      <TouchableOpacity onClick={{backgroundColor:'red'}}>
+      <TouchableOpacity onPress={() => setSmile(2)}>
       <View style={styles.circle}>
         <Ionicons name="md-sad" size={30} color="#ef476f" />
       </View>
@@ -29,27 +31,59 @@ function InputScreen2(props){
      </View> 
   );
   }
-  else if(Smile == 1)
+  
+  else if(Smile == 1){
+  
+  return(
+
   <View style={styles.SmolcontainerC}>
       <View>
       <Text style={styles.titleInput}>How do you feel today?</Text>
       </View>
-      <TouchableOpacity onClick={{backgroundColor:'red'}}>
-      <View style={styles.circle}>
+      <TouchableOpacity onPress={() => setSmile(1)}>
+      <View style={styles.circlehappy}>
         <Ionicons name="md-happy" size={30} color="#ef476f" />
       </View>
       </TouchableOpacity>
   
-      <TouchableOpacity onClick={{backgroundColor:'red'}}>
+      <TouchableOpacity onPress={() => setSmile(2)}>
       <View style={styles.circle}>
         <Ionicons name="md-sad" size={30} color="#ef476f" />
       </View>
       </TouchableOpacity>
      </View> 
+  );
+  }
 
+  else if(Smile == 2){
+  
+  return(
 
+  <View style={styles.SmolcontainerC}>
+  <View>
+  <Text style={styles.titleInput}>How do you feel today?</Text>
+  </View>
+  <TouchableOpacity onPress={() => setSmile(1)}>
+  <View style={styles.circle}>
+    <Ionicons name="md-happy" size={30} color="#ef476f" />
+  </View>
+  </TouchableOpacity>
 
+  <TouchableOpacity onPress={() => setSmile(2)}>
+  <View style={styles.circlesad}>
+    <Ionicons name="md-sad" size={30} color="#ef476f" />
+  </View>
+  </TouchableOpacity>
+ </View> 
+  );
+  }
+    else{
 
+      return(
+
+      <View></View>
+      );
+    }
 
 }
 
@@ -76,5 +110,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
       },
+      circlehappy: {
+        height:60,
+        width:60,
+        borderRadius: 50,
+        backgroundColor:'green',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: 'green'
+      },
+      circlesad: {
+        height:60,
+        width:60,
+        borderRadius: 50,
+        backgroundColor:'red',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: 'red',
+      }
       
     });
