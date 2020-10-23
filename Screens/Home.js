@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import React, {Component, useState, useRef, useEffect} from 'react';
-import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
+import React, {Component, useState, useRef, useEffect, } from 'react';
+import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, AsyncStorage, ScrollView, BackHandler, Alert} from 'react-native';
 
 import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
@@ -18,6 +18,35 @@ export default function  Home({ navigation }){
   const [buttonstate, setButtonState] = useState(0);
 
   const aHight = useRef( new Animated.Value(100)).current;
+
+  const [energy, setEnergy] = useState(100);
+
+  const saveEnergy = async() => {
+    try {
+      await AsyncStorage.setItem('EnergyKey', JSON.stringify(energy))  
+    }catch (ERR) 
+    {
+      Alert(ERR);
+    }
+  }
+
+  const loadEnergy = async() => {
+    try{
+      let energyAsName = await AsyncStorage.getItem('EnergyKey');
+      if(energyAsName !== null)
+      {
+        setEnergy(JSON.parse(energyAsName));
+      }
+    }catch(err) 
+    {
+      Alert(err)
+    }
+  }
+useEffect(() => {
+  loadEnergy();
+},[]);
+
+
   
   
   const openMe = () => {
@@ -82,6 +111,7 @@ export default function  Home({ navigation }){
 
       <View style={styles.Smolcontainer}>
       <Text>Ekran 4</Text>
+      <Button  title='+' onPress={() => {setEnergy(energy + 10); saveEnergy;}}/>
      </View> 
       
       ); }
@@ -101,7 +131,10 @@ export default function  Home({ navigation }){
     return( 
     <>
     
+  
     <View style={{position: 'absolute', backgroundColor: 'blue', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'white', width: energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
+ 
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>

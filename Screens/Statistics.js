@@ -31,7 +31,6 @@ export default function Statistics({ navigation }){
         else if(BState == 2)
         { 
           
-          
           return(
           <TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
           <Text>{content}</Text>
