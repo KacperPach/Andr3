@@ -1,21 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import React, {Component, useState, useRef, useEffect, } from 'react';
-import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, AsyncStorage, ScrollView, BackHandler, Alert} from 'react-native';
+import React, {Component, useState, useRef, useEffect} from 'react';
+import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler , TextInput} from 'react-native';
 
 import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
 import RButton3 from './../components/button3.js';
 import RButton4 from './../components/button4.js';
+
 import Clock from './../components/clockquest.js';
 
+import InputScreen1 from '../components/InputScreen1.js';
+import InputScreen2 from '../components/InputScreen2.js';
+import InputScreen3 from '../components/InputScreen3.js';
+import InputScreen4 from '../components/InputScreen4.js';
 
 
 export default function  Home({ navigation }){
 
-
-
-  const [buttonstate, setButtonState] = useState(0);
+  const [buttonstate, setButtonState] = useState();
 
   const aHight = useRef( new Animated.Value(100)).current;
 
@@ -23,8 +26,8 @@ export default function  Home({ navigation }){
 
   const saveEnergy = async() => {
     try {
-      await AsyncStorage.setItem('EnergyKey', JSON.stringify(energy))  
-    }catch (ERR) 
+      await AsyncStorage.setItem('EnergyKey', JSON.stringify(energy))
+    }catch (ERR)
     {
       Alert(ERR);
     }
@@ -37,7 +40,7 @@ export default function  Home({ navigation }){
       {
         setEnergy(JSON.parse(energyAsName));
       }
-    }catch(err) 
+    }catch(err)
     {
       Alert(err)
     }
@@ -47,8 +50,7 @@ useEffect(() => {
 },[]);
 
 
-  
-  
+
   const openMe = () => {
 
         Animated.timing( aHight, {
@@ -57,7 +59,7 @@ useEffect(() => {
           }
         ).start();
   };
-  
+
 
   const closeMe = () => {
         Animated.timing( aHight, {
@@ -67,74 +69,56 @@ useEffect(() => {
         ).start();
   };
 
-  function BContainetr(props) {
+  const BContainetr = (props) => {
     const OnScreen = props.OnScreen;
-    if(OnScreen == 1) 
+    if(OnScreen == 1)
     {
       return(
 
+      <InputScreen1></InputScreen1>
 
-       <View style={styles.Smolcontainer}>
-       
-       <Image source={require('./../assets/ProfileBar.png')} style={styles.imageBar}/>
-       
-       <Text>Ekran 1</Text>
-       </View> 
-    
-    
-     
       );
     }
     else if(OnScreen == 2){ return( //Ekran po kliknięciu przyciusku 2
-    
-    
-    
-      <View style={styles.Smolcontainer}>
-      <Text>Ekran 2</Text>
-     </View> 
-    
+
+      <InputScreen2></InputScreen2>
+
       ); }
     else if(OnScreen == 3){ return(
-      
-      
-      
-      <View style={styles.Smolcontainer}>
-      <Text>Ekran 3</Text>
-      <Button onPress={() => Clock()}></Button>
-     </View> 
-      
-      
+
+      <InputScreen3></InputScreen3>
+
       );}
     else if(OnScreen == 4){ return(
 
+     <InputScreen4></InputScreen4>
 
 
       <View style={styles.Smolcontainer}>
       <Text>Ekran 4</Text>
       <Button  title='+' onPress={() => {setEnergy(energy + 10); saveEnergy;}}/>
-     </View> 
-      
+     </View>
+
       ); }
     else {
       return(
-      
-      
+
       <View></View>
 
       );
     }
   }
 
-  const User = () => 
+  const User = () =>
   {
 
-    return( 
+    return(
     <>
-    
-  
+
+
     <View style={{position: 'absolute', backgroundColor: 'blue', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
     <View style={{position: 'absolute', backgroundColor: 'white', width: energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
- 
+
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
@@ -143,7 +127,6 @@ useEffect(() => {
     );
   }
 
-
   return (
 
     <View style={styles.container}>
@@ -151,23 +134,18 @@ useEffect(() => {
     <ImageBackground source={require('./../assets/background.png')} style={styles.image}/>
 
     <User style={{position: 'absolute', top: 200}}/>
-      
-
-    
 
       <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
         </TouchableOpacity>
         <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame {buttonstate}</Text>
-      
-      </View>
-        
-      <View> 
-      
-       </View>
-      
 
+      </View>
+
+      <View>
+
+       </View>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
           <View style={styles.buttonContainer} >
@@ -177,7 +155,7 @@ useEffect(() => {
           <RButton4 onPress={() => {openMe(); setButtonState(4); }} state={buttonstate}/>
           </View>
           <BContainetr OnScreen={buttonstate}/>
-        </Animated.View>  
+        </Animated.View>
 
       <StatusBar style="auto" />
     </View>
@@ -193,7 +171,7 @@ const styles = StyleSheet.create({
       bottom:100,
       left:0,
       right:0,
-  
+
     },
     imageBar: {
       flex: 1,
@@ -201,16 +179,8 @@ const styles = StyleSheet.create({
       position: 'absolute',
       width:150,
       height: 150,
-  
-    },
-    Smolcontainer:{
-      flex: 1,
-      backgroundColor: 'white',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      top: 30,
-    },
 
+    },
     container:{
       flex: 1,
       backgroundColor: '#fff',
@@ -222,10 +192,9 @@ const styles = StyleSheet.create({
     buttonContainer: {
       flexDirection: 'row',
       justifyContent: 'space-around',
-     
 
     },
-  
+
     top:{
       flexDirection: 'row',
       height:70,
@@ -233,7 +202,7 @@ const styles = StyleSheet.create({
       alignItems: 'flex-start',
       padding: 25
     },
-  
+
     bottom:{
       borderTopLeftRadius: 12,
       borderTopRightRadius: 12,
@@ -242,10 +211,8 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       padding: 15,
       alignItems: 'stretch',
-  
-  
+
+
     },
-    
+
   });
-  
-  
