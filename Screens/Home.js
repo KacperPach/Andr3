@@ -25,11 +25,11 @@ export default function  Home({ navigation }){
 
   const aHight = useRef( new Animated.Value(100)).current;
 
-  const [energy, setEnergy] = useState(100);
+  const [stats, setStats] = useState({energy: 0, health: 0, energy: 0, expiriance: 0});
 
-  const saveEnergy = async() => { //zapisuje "energię" 
+  const save = async() => { //zapisuje "energię" 
     try {   // try bo jest asynchroniczne i nie wykonuje się zawsze od razu czasem sie nie udaje
-      await AsyncStorage.setItem('EnergyKey', JSON.stringify(energy)); // komenda zapisuje w pliku Json zawartość zimennej energy 
+      await AsyncStorage.setItem('statsKey', JSON.stringify(stats)); // komenda zapisuje w pliku Json zawartość zimennej energy 
     }catch (ERR) // catch zwraca wiadomość erroru w przypadku wystąpienia problemu przy zapisaniu 
     {
       alert(ERR);
@@ -37,12 +37,12 @@ export default function  Home({ navigation }){
  
   }
 
-  const loadEnergy = async() => {
+  const load = async() => {
     try{
-      let energyAsName = await AsyncStorage.getItem('EnergyKey');
-      if(energyAsName !== null)
+      let statsAsName = await AsyncStorage.getItem('statsKey');
+      if(statsAsName !== null)
       {
-        setEnergy(JSON.parse(energyAsName));
+        setStats(JSON.parse(statsAsName));
       }
     }catch(err)
     {
@@ -51,7 +51,7 @@ export default function  Home({ navigation }){
   }
 
 useEffect( () => { 
-  loadEnergy();
+  load();
 
   const backAction = () => {
     closeMe();
@@ -131,12 +131,12 @@ useEffect( () => {
 
     <Text style={{position: 'absolute', top:180, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Energy</Text>
     <View style={{position: 'absolute', backgroundColor: 'blue', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
-    <View style={{position: 'absolute', backgroundColor: 'white', width: energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'white', width: stats.energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
 
     <Text style={{position: 'absolute', top:225, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Health</Text>
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
     
-    <Text style={{position: 'absolute', top:270, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Ener</Text>
+    <Text style={{position: 'absolute', top:270, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Energy</Text>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
     
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
@@ -160,13 +160,19 @@ useEffect( () => {
         </TouchableOpacity>
         <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame {buttonstate}</Text>
        
-      </View>
+      </View> 
 
-      <View>
-      <Button title='add' onPress={() => {setEnergy(energy+20)}}></Button>
-      <Button title='save' onPress={() => {saveEnergy()}}></Button>
-      <Button title='load' onPress={() => {loadEnergy()}}></Button>
-       </View>
+        <View style={{ backgroundColor:'white', alignSelf:'flex-end', borderWidth: 2, borderColor: 'black', borderRadius: 5, top:170}}> 
+        <Text style={{alignSelf:'center', fontWeight:'bold'}}> Pog debag box</Text>
+
+        <View style={{flexDirection: 'row', }}>
+        <Button title='add' onPress={() => {setStats({energy: stats.energy+20})}}></Button>
+        <Button title='save' onPress={() => {save()}}></Button>
+        <Button title='load' onPress={() => {load()}}></Button>
+        <Button title='delete' onPress={() => {setStats({energy: 0}); save();}}></Button>
+        </View>
+        </View>
+      
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
           <View style={styles.buttonContainer} >
