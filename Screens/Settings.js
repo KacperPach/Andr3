@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, {useState, useRef, useEffect} from 'react';
-import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler} from 'react-native';
+import React  from 'react';
+import { ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, Alert} from 'react-native';
 
 
 export default function Settings({ navigation }){
@@ -21,7 +21,8 @@ export default function Settings({ navigation }){
     <View style={styles.center}> 
       <Text style={{fontSize:40, color:'white', alignSelf:'center'}}>Created by Kacper Pach and Ziemowit Orlikowski</Text>
     </View>
-    
+
+   
     <View>
     <Text style={{color: 'white'}}>Version 0.1.0</Text>
     </View>

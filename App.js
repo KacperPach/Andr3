@@ -16,7 +16,7 @@ return(
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="Settings" component={Settings} />
-        <Drawer.Screen name="Statistics" component={Statistics} />
+        <Drawer.Screen name="Quests" component={Statistics} />
       </Drawer.Navigator>
     </NavigationContainer>
 

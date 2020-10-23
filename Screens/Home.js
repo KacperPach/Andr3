@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
-import React, {Component, useState, useRef, useEffect} from 'react';
-import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler , TextInput} from 'react-native';
+import React, { useState, useRef, useEffect} from 'react';
+import {Image, Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler , TextInput, Alert} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
@@ -18,19 +19,22 @@ import InputScreen4 from '../components/InputScreen4.js';
 
 export default function  Home({ navigation }){
 
+
+
   const [buttonstate, setButtonState] = useState();
 
   const aHight = useRef( new Animated.Value(100)).current;
 
   const [energy, setEnergy] = useState(100);
 
-  const saveEnergy = async() => {
-    try {
-      await AsyncStorage.setItem('EnergyKey', JSON.stringify(energy))
-    }catch (ERR)
+  const saveEnergy = async() => { //zapisuje "energię" 
+    try {   // try bo jest asynchroniczne i nie wykonuje się zawsze od razu czasem sie nie udaje
+      await AsyncStorage.setItem('EnergyKey', JSON.stringify(energy)); // komenda zapisuje w pliku Json zawartość zimennej energy 
+    }catch (ERR) // catch zwraca wiadomość erroru w przypadku wystąpienia problemu przy zapisaniu 
     {
-      Alert(ERR);
+      alert(ERR);
     }
+ 
   }
 
   const loadEnergy = async() => {
@@ -42,16 +46,30 @@ export default function  Home({ navigation }){
       }
     }catch(err)
     {
-      Alert(err)
+      alert(err)
     }
   }
-useEffect(() => {
+
+useEffect( () => { 
   loadEnergy();
+
+  const backAction = () => {
+    closeMe();
+    return true;
+  };
+
+  const backHandler = BackHandler.addEventListener(
+    "hardwareBackPress",
+    
+    backAction
+  );
+  
+  return () => backHandler.remove();
+  
 },[]);
 
 
-
-  const openMe = () => {
+  const openMe = () => {  // otwiera pasek na dole 
 
         Animated.timing( aHight, {
             toValue: 300,
@@ -60,16 +78,17 @@ useEffect(() => {
         ).start();
   };
 
-
-  const closeMe = () => {
+  const closeMe = () => { // Zamyka pasek na dole
         Animated.timing( aHight, {
             toValue: 100,
             duration: 1000,
           }
         ).start();
+        setButtonState(0);
+        
   };
 
-  const BContainetr = (props) => {
+  const BContainetr = (props) => { //dolny pasek i jego różne ekrany 
     const OnScreen = props.OnScreen;
     if(OnScreen == 1)
     {
@@ -94,11 +113,6 @@ useEffect(() => {
      <InputScreen4></InputScreen4>
 
 
-      <View style={styles.Smolcontainer}>
-      <Text>Ekran 4</Text>
-      <Button  title='+' onPress={() => {setEnergy(energy + 10); saveEnergy;}}/>
-     </View>
-
       ); }
     else {
       return(
@@ -115,13 +129,18 @@ useEffect(() => {
     return(
     <>
 
-
+    <Text style={{position: 'absolute', top:180, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Energy</Text>
     <View style={{position: 'absolute', backgroundColor: 'blue', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
     <View style={{position: 'absolute', backgroundColor: 'white', width: energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
 
+    <Text style={{position: 'absolute', top:225, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Health</Text>
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
+    
+    <Text style={{position: 'absolute', top:270, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Ener</Text>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
+    
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
+    
     <Image source={require('./../assets/avatar.png')} style={{width: 280, height: 320, position: 'absolute', top: 80, left:-70}}></Image>
     </>
     );
@@ -140,11 +159,13 @@ useEffect(() => {
           <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
         </TouchableOpacity>
         <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame {buttonstate}</Text>
-
+       
       </View>
 
       <View>
-
+      <Button title='add' onPress={() => {setEnergy(energy+20)}}></Button>
+      <Button title='save' onPress={() => {saveEnergy()}}></Button>
+      <Button title='load' onPress={() => {loadEnergy()}}></Button>
        </View>
 
         <Animated.View style={[styles.bottom, {height: aHight}]}>
