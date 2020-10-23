@@ -42,7 +42,7 @@ function InputScreen2(props){
       </View>
       <TouchableOpacity onPress={() => setSmile(1)}>
       <View style={styles.circlehappy}>
-        <Ionicons name="md-happy" size={30} color="#ef476f" />
+        <Ionicons name="md-happy" size={30} color="white" />
       </View>
       </TouchableOpacity>
   
@@ -71,7 +71,7 @@ function InputScreen2(props){
 
   <TouchableOpacity onPress={() => setSmile(2)}>
   <View style={styles.circlesad}>
-    <Ionicons name="md-sad" size={30} color="#ef476f" />
+    <Ionicons name="md-sad" size={30} color="white" />
   </View>
   </TouchableOpacity>
  </View> 
