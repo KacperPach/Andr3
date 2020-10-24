@@ -8,8 +8,8 @@ import RButton1 from './../components/button.js';
 import RButton2 from './../components/button2.js';
 import RButton3 from './../components/button3.js';
 import RButton4 from './../components/button4.js';
-import Counter from './Statistics.js';
-import points1 from './Statistics.js';
+
+import Clock from './../components/clockquest.js';
 
 import InputScreen1 from '../components/InputScreen1.js';
 import InputScreen2 from '../components/InputScreen2.js';
@@ -19,13 +19,12 @@ import InputScreen4 from '../components/InputScreen4.js';
 
 export default function  Home({ navigation }){
 
-  console.log(points1);
 
   const [buttonstate, setButtonState] = useState();
 
   const aHight = useRef( new Animated.Value(100)).current;
 
-  const [stats, setStats] = useState({energy: 0, health: 0, quest: {Counter}, expiriance: 0});
+  const [stats, setStats] = useState({energy: 0, health: 0, quest: 0, expiriance: 0});
 
   const save = async() => { //zapisuje "energię" 
     try {   // try bo jest asynchroniczne i nie wykonuje się zawsze od razu czasem sie nie udaje
@@ -138,8 +137,7 @@ useEffect( () => {
     
     <Text style={{position: 'absolute', top:270, left: 291, borderRadius: 20, fontWeight: 'bold' }}>Daily Quests</Text>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
-    <View style={{position: 'absolute', backgroundColor: 'white', width: stats.quest, height:15, top:200, left: 155, borderRadius: 20 }}></View>
-
+    
     <Text style={{position: 'absolute', top:315, left: 300, borderRadius: 20, fontWeight: 'bold' }}>Experience</Text>
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
     

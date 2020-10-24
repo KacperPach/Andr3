@@ -5,20 +5,12 @@ import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, V
 
 
 export default function Statistics({ navigation }){
-    let Counter = 0;
- 
+
+    const [Counter, setCState] = useState(0);
+    
     const [i, setIState] = useState(0);
     
-    const customData = require('./../components/quests.json');
-        
-    const points1 = customData[i].tier;
-    const points2 = customData[i+1].tier;
-    const points3 = customData[i+2].tier;
 
-    const C = () => {
-
-      Counter = Counter+1;
-    }  
 
     function Quest(props) {
         const content = props.content;
@@ -26,21 +18,19 @@ export default function Statistics({ navigation }){
 
         if(BState == 1) 
         {
-          
+
           return(
           <TouchableOpacity style={styles.quest}>
           <Text>{content}</Text>
-          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() =>  {setBState(2); C()}}>
+          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() =>  setBState(2)}>
           <Ionicons name="ios-checkmark" size={30} color="black" style={{alignSelf:'center'}}/>
           </TouchableOpacity>
        
           </TouchableOpacity>
           );
-
-         
         }
         else if(BState == 2)
-        {
+        { 
           
           return(
           <TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
@@ -66,6 +56,9 @@ export default function Statistics({ navigation }){
 
         const Day = new Date().getDate();
         //async do dni trza dodać
+        console.log(i);
+        console.log(Time);
+        console.log(Day);
         
         if(Time >= 12)
       {
@@ -82,10 +75,7 @@ export default function Statistics({ navigation }){
       };
     
       const List = () => {
-
-
-        console.log(points1)
-        
+        const customData = require('./../components/quests.json');
         return(
           <View>
             <FlatList
@@ -126,6 +116,7 @@ export default function Statistics({ navigation }){
     <Text>Done: {Counter}/3 </Text>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
