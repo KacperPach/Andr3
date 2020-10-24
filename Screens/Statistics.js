@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { DrawerContentScrollView } from '@react-navigation/drawer';
 import React, {useState, useRef, useEffect} from 'react';
 import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler, FlatList} from 'react-native';
 
@@ -7,8 +8,12 @@ import Clock from './../components/clockquest.js';
 export default function Statistics({ navigation }){
 
     const [Counter, setCState] = useState(0);
+    
     const [i, setIState] = useState(0);
-   
+    
+    const [Time, setTime] = useState(11);
+
+
     function Quest(props) {
         const content = props.content;
         const [BState, setBState] = useState(1);
@@ -47,15 +52,22 @@ export default function Statistics({ navigation }){
 
       const QuestSet = () => {
       
+      
+        if(Time >= 12)
+      {
         setIState(i+1);
-        console.log(i);
-        
+      } 
+      else{
+        setIState(i);
+      }
         if(i+3 >= 12)
         {
           setIState(0)
         }
       }
 
+
+      
       const List = () => {
         const customData = require('./../components/quests.json');
         return(
@@ -94,7 +106,7 @@ export default function Statistics({ navigation }){
     </View>
 
     <Button  title = "change quests" onPress={() => QuestSet()}></Button>
-    <Button  title = "show time" onPress={() => Clock()}></Button>
+    <Button  title = "show time" onPress={() => {setTime(Time + 1); console.log(Time); console.log(i)}}></Button>
     <Text>Done: {Counter}/3 </Text>
     </View>
   );
