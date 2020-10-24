@@ -13,7 +13,7 @@ export default function Settings({ navigation }){
     
     <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
+        <Ionicons name="ios-menu" size={30} color='white' style={{flex: 1, alignSelf: 'center'}}/>
       </TouchableOpacity>
       <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame</Text>
     </View>
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
       alignItems: 'stretch',
       backgroundColor: '#909090'
     },
-  
     top:{
       flexDirection: 'row',
-      height:70,
+      height:86,
       backgroundColor: '#4b4b4d',
       alignItems: 'flex-start',
-      padding: 25
+      padding: 25,
+      paddingTop: 40,
     },
     center:{
       flex:3,
