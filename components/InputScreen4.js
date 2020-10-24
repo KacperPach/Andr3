@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     top: 30,
+    borderRadius: 10
   },
   inputtextButton:{
     margin: 10,

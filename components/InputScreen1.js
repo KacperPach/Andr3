@@ -96,6 +96,7 @@ titleInput:{
     padding: 8,
     margin: 10,
     width: 200,
+    borderRadius: 6
   },
   Smolcontainer:{
     flex: 1,
@@ -104,6 +105,7 @@ titleInput:{
     justifyContent: 'center',
     alignItems: 'flex-start',
     top: 30,
+    borderRadius: 10
   },
   inputtextButton:{
     margin: 10,

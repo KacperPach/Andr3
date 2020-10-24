@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'; 
-  
+import { StyleSheet, Text, TouchableOpacity, View} from 'react-native'; 
+import Slider from '@react-native-community/slider'; 
   
   
 function InputScreen2(props){
   
+  const [Value,setValue] = useState(0);
   const [Smile, setSmile] = useState(0);
   
   if(Smile == 0)
@@ -14,20 +15,31 @@ function InputScreen2(props){
   return(
   
   <View style={styles.SmolcontainerC}>
-      <View>
-      <Text style={styles.titleInput}>How do you feel today?</Text>
-      </View>
-      <TouchableOpacity onPress={() => setSmile(1)}>
-      <View style={styles.circle}>
+  <View style={styles.sliderStyle}>
+  <Text style={styles.titleInput}>How do you feel today?</Text>
+      <TouchableOpacity onPress={() => setSmile(1)} style={styles.circle}>
         <Ionicons name="md-happy" size={30} color="#ef476f" />
-      </View>
       </TouchableOpacity>
-  
-      <TouchableOpacity onPress={() => setSmile(2)}>
-      <View style={styles.circle}>
+      <TouchableOpacity onPress={() => setSmile(2)} style={styles.circle}>
         <Ionicons name="md-sad" size={30} color="#ef476f" />
-      </View>
       </TouchableOpacity>
+  </View>
+    <View style={styles.sliderStyle}>
+    <Text style={styles.titleInput}>How many hours have you slept?</Text>
+      <Slider 
+      style={{width: 100, height: 40, margin: 20}}
+      step={1} 
+      value={Value}
+      onValueChange={value => setValue(value)} 
+    minimumValue={0}
+    maximumValue={24}
+    minimumTrackTintColor="white"
+    maximumTrackTintColor='blue'
+  />
+  <View>
+  <Text>Hours:{Value}</Text>
+  </View>
+  </View>
      </View> 
   );
   }
@@ -40,20 +52,16 @@ function InputScreen2(props){
       <View>
       <Text style={styles.titleInput}>How do you feel today?</Text>
       </View>
-      <TouchableOpacity onPress={() => setSmile(1)}>
-      <View style={styles.circlehappy}>
+      <TouchableOpacity onPress={() => setSmile(1)} style={styles.circlehappy}>
         <Ionicons name="md-happy" size={30} color="white" />
-      </View>
       </TouchableOpacity>
   
-      <TouchableOpacity onPress={() => setSmile(2)}>
-      <View style={styles.circle}>
+      <TouchableOpacity onPress={() => setSmile(2)} style={styles.circle}>
         <Ionicons name="md-sad" size={30} color="#ef476f" />
-      </View>
       </TouchableOpacity>
       <View><Text>Great!</Text></View>
      </View> 
-
+    
   );
   }
 
@@ -65,16 +73,12 @@ function InputScreen2(props){
   <View>
   <Text style={styles.titleInput}>How do you feel today?</Text>
   </View>
-  <TouchableOpacity onPress={() => setSmile(1)}>
-  <View style={styles.circle}>
+  <TouchableOpacity onPress={() => setSmile(1)} style={styles.circle}>
     <Ionicons name="md-happy" size={30} color="#ef476f" />
-  </View>
   </TouchableOpacity>
 
-  <TouchableOpacity onPress={() => setSmile(2)}>
-  <View style={styles.circlesad}>
+  <TouchableOpacity onPress={() => setSmile(2)} style={styles.circlesad}>
     <Ionicons name="md-sad" size={30} color="white" />
-  </View>
   </TouchableOpacity>
   <View><Text>Don't worry!</Text></View>
  </View> 
@@ -100,10 +104,9 @@ const styles = StyleSheet.create({
       SmolcontainerC:{
         flex: 1,
         backgroundColor: 'white',
-        justifyContent: "center",
-        alignItems: "center",
-        top: 30,
-        flexDirection:"row"
+        justifyContent: 'center',
+        flexDirection:"column",
+        borderRadius: 10
       },
       circle: {
         height:60,
@@ -130,5 +133,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'red',
+      },
+      sliderStyle:{
+        flex: 2,
+        flexDirection:'row',
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        borderRadius: 10,
       }
     });

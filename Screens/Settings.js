@@ -24,7 +24,7 @@ export default function Settings({ navigation }){
 
    
     <View>
-    <Text style={{color: 'white'}}>Version 0.1.0</Text>
+    <Text style={{color: 'white'}}>Version 0.0.1</Text>
     </View>
     </View>
   );
