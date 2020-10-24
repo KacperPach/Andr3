@@ -6,11 +6,15 @@ import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, V
 
 export default function Statistics({ navigation }){
 
-    const [Counter, setCState] = useState(0);
+    let Counter = 2;
     
     const [i, setIState] = useState(0);
     
+    const C = () => {
 
+      Counter = Counter+1;
+      console.log(Counter)
+    }  
 
     function Quest(props) {
         const content = props.content;
@@ -18,19 +22,21 @@ export default function Statistics({ navigation }){
 
         if(BState == 1) 
         {
-
+          
           return(
           <TouchableOpacity style={styles.quest}>
           <Text>{content}</Text>
-          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() =>  setBState(2)}>
+          <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]} onPress={() =>  {setBState(2); C()}}>
           <Ionicons name="ios-checkmark" size={30} color="black" style={{alignSelf:'center'}}/>
           </TouchableOpacity>
        
           </TouchableOpacity>
           );
+
+         
         }
         else if(BState == 2)
-        { 
+        {
           
           return(
           <TouchableOpacity style={[styles.quest, { backgroundColor: 'green'}]}>
