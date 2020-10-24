@@ -9,7 +9,7 @@ import RButton2 from './../components/button2.js';
 import RButton3 from './../components/button3.js';
 import RButton4 from './../components/button4.js';
 import Counter from './Statistics.js';
-import Clock from './../components/clockquest.js';
+import points1 from './Statistics.js';
 
 import InputScreen1 from '../components/InputScreen1.js';
 import InputScreen2 from '../components/InputScreen2.js';
@@ -19,6 +19,7 @@ import InputScreen4 from '../components/InputScreen4.js';
 
 export default function  Home({ navigation }){
 
+  console.log(points1);
 
   const [buttonstate, setButtonState] = useState();
 
