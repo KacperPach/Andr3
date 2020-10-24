@@ -135,9 +135,10 @@ useEffect( () => {
     <Text style={{position: 'absolute', top:225, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Health</Text>
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
     
-    <Text style={{position: 'absolute', top:270, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Daily Quests</Text>
+    <Text style={{position: 'absolute', top:270, left: 291, borderRadius: 20, fontWeight: 'bold' }}>Daily Quests</Text>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
     
+    <Text style={{position: 'absolute', top:315, left: 300, borderRadius: 20, fontWeight: 'bold' }}>Experience</Text>
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
     
     <Image source={require('./../assets/avatar.png')} style={{width: 280, height: 320, position: 'absolute', top: 80, left:-70}}></Image>
@@ -155,9 +156,9 @@ useEffect( () => {
 
       <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Ionicons name="ios-menu" size={45} color='white' style={{flex: 1, alignSelf: 'center'}}/>
+          <Ionicons name="ios-menu" size={30} color='white' style={{flex: 1, alignSelf: 'center'}}/>
         </TouchableOpacity>
-        <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>HealthPlayingGame {buttonstate}</Text>
+        <Text style={{flex: 3, color: 'white', alignSelf: 'center', fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Health Playing Game</Text>
        
       </View> 
 
@@ -180,7 +181,7 @@ useEffect( () => {
           <RButton3 onPress={() => {openMe(); setButtonState(3); }} state={buttonstate}/>
           <RButton4 onPress={() => {openMe(); setButtonState(4); }} state={buttonstate}/>
           </View>
-          <BContainetr OnScreen={buttonstate}/>
+          <BContainetr OnScreen={buttonstate} />
         </Animated.View>
 
       <StatusBar style="auto" />
@@ -217,16 +218,20 @@ const styles = StyleSheet.create({
 
     buttonContainer: {
       flexDirection: 'row',
-      justifyContent: 'space-around',
+      justifyContent: 'space-between',
+      marginTop: 5,
+      marginLeft: 10,
+      marginRight: 10
 
     },
 
     top:{
       flexDirection: 'row',
-      height:70,
+      height:86,
       backgroundColor: '#4b4b4d',
       alignItems: 'flex-start',
-      padding: 25
+      padding: 25,
+      paddingTop: 40,
     },
 
     bottom:{
@@ -235,7 +240,7 @@ const styles = StyleSheet.create({
       height:100,
       backgroundColor: '#4b4b4d',
       flexDirection: 'column',
-      padding: 15,
+      padding: 10,
       alignItems: 'stretch',
 
 

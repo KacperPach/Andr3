@@ -5,11 +5,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 function InputScreen3(props) {
    
-  const save = async() => { //zapisuje "energię" 
-  try {   // try bo jest asynchroniczne i nie wykonuje się zawsze od razu czasem sie nie udaje
-    await AsyncStorage.setItem('TasksKey', JSON.stringify(Calories)); // komenda zapisuje w pliku Json zawartość zimennej energy 
-  }catch (ERR) // catch zwraca wiadomość erroru w przypadku wystąpienia problemu przy zapisaniu 
-  {
+  const save = async() => {  
+  try {   
+    await AsyncStorage.setItem('TasksKey', JSON.stringify(Calories)); 
+  }catch (ERR) {
     alert(ERR);
   }
 
@@ -27,7 +26,6 @@ const load = async() => {
     alert(err)
   }
 }
-
 
   useEffect( () => { 
     load();
@@ -52,7 +50,10 @@ const load = async() => {
     return (
       <View style={styles.Smolcontainer}>
       <View style={{flexDirection: 'row', justifyContent: 'center', alignContent:'space-around'}}>
-      <Text style={styles.titleInput}>Daily calories:</Text>
+      <View style={{flexDirection: "column", marginTop: 6}}>
+      <Text style={styles.titleInput}>Daily</Text>
+      <Text style={styles.titleInput}>calories:</Text>
+      </View>
       <TextInput style={styles.inputtext}  placeholder='Be honest' value={insidetext} onChangeText={insidetext => setInText(insidetext)}></TextInput>
       <TouchableOpacity style={styles.circle} onPress={addItems}>
       <Ionicons name="ios-checkmark" size={30} color="white" style={{alignSelf:'center'}}/>
@@ -79,7 +80,6 @@ export default InputScreen3;
 const styles = StyleSheet.create({
 titleInput:{
     fontSize: 20,
-    marginTop: 15,
     marginLeft: 10,
   },
   inputtext:{
@@ -87,7 +87,8 @@ titleInput:{
     borderColor: '#000000',
     padding: 8,
     margin: 10,
-    width: 200,
+    width: 218,
+    borderRadius: 6
   },
   Smolcontainer:{
     flex: 1,
@@ -96,6 +97,7 @@ titleInput:{
     justifyContent: 'center',
     alignItems: 'flex-start',
     top: 30,
+    borderRadius: 10 ,
   },
   inputtextButton:{
     margin: 10,
