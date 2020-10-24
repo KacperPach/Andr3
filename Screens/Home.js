@@ -51,6 +51,7 @@ export default function  Home({ navigation }){
 
 useEffect( () => { 
   load();
+ 
 
   const backAction = () => {
     closeMe();
@@ -129,19 +130,27 @@ useEffect( () => {
     <>
 
     <Text style={{position: 'absolute', top:180, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Energy</Text>
-    <View style={{position: 'absolute', backgroundColor: 'blue', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
-    <View style={{position: 'absolute', backgroundColor: 'white', width: stats.energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: '#2a5483', width:220, height:15, top:200, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: '#cce4ff', width: stats.energy, height:15, top:200, left: 155, borderRadius: 20 }}></View>
 
     <Text style={{position: 'absolute', top:225, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Health</Text>
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'white', width:stats.health, height:15, top:245, left: 155, borderRadius: 20 }}></View>
     
     <Text style={{position: 'absolute', top:270, left: 291, borderRadius: 20, fontWeight: 'bold' }}>Daily Quests</Text>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
+    <View style={{position: 'absolute', backgroundColor: 'white', width: stats.quest, height:15, top:290, left: 155, borderRadius: 20 }}></View>
     
     <Text style={{position: 'absolute', top:315, left: 300, borderRadius: 20, fontWeight: 'bold' }}>Experience</Text>
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>
-    
+    <View style={{position: 'absolute', backgroundColor: 'white', width:stats.expiriance, height:15, top:335, left: 155, borderRadius: 20 }}></View>
+
+
     <Image source={require('./../assets/avatar.png')} style={{width: 280, height: 320, position: 'absolute', top: 80, left:-70}}></Image>
+
+    <Text style={{position: 'absolute', top:100, left: 217, borderRadius: 20, fontWeight: 'bold', fontSize: 20}}>Character level: {Math.floor(stats.expiriance/220)}</Text>
+
+
     </>
     );
   }
@@ -166,7 +175,7 @@ useEffect( () => {
         <Text style={{alignSelf:'center', fontWeight:'bold'}}> Pog debag box</Text>
 
         <View style={{flexDirection: 'row', }}>
-        <Button title='add' onPress={() => {setStats({energy: stats.energy+20})}}></Button>
+        <Button title='add' onPress={() => {setStats({energy : stats.energy+20 })}}></Button>
         <Button title='save' onPress={() => {save()}}></Button>
         <Button title='load' onPress={() => {load()}}></Button>
         <Button title='delete' onPress={() => {setStats({energy: 0}); save();}}></Button>
