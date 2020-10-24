@@ -1,37 +1,86 @@
-import React, {useState} from 'react';
-
+import React, {useState, useEffect} from 'react';
+import { Ionicons } from '@expo/vector-icons';
 import {StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
-
-function InputScreen1(props) {
+function InputScreen3(props) {
    
-    const [Calories, setCalories] = useState('');
+  const save = async() => { //zapisuje "energię" 
+  try {   // try bo jest asynchroniczne i nie wykonuje się zawsze od razu czasem sie nie udaje
+    await AsyncStorage.setItem('TasksKey', JSON.stringify(Calories)); // komenda zapisuje w pliku Json zawartość zimennej energy 
+  }catch (ERR) // catch zwraca wiadomość erroru w przypadku wystąpienia problemu przy zapisaniu 
+  {
+    alert(ERR);
+  }
+
+}
+
+const load = async() => {
+  try{
+    let tasksAwait = await AsyncStorage.getItem('TaskKey');
+    if(tasksAwait !== null)
+    {
+      setStats(JSON.parse( tasksAwait));
+    }
+  }catch(err)
+  {
+    alert(err)
+  }
+}
+
+
+  useEffect( () => { 
+    load();
+
+  },[]);
+
+    const [Calories, setCalories] = useState([]);
+
+    let [insidetext, setInText] = useState('');
+
+    const addItems = () => {
+
+      setCalories([...Calories, {
+        id: Calories.length,
+        value: insidetext
+      }])
+      setInText('');
+
+      save();
+    };
     
     return (
-        <View style={styles.Smolcontainer}>
-        <Text style={styles.titleInput}>Daily calories</Text>
-        <TextInput style={styles.inputtext} placeholder='Number of calories' value={Calories} onChangeText={Calories => setCalories(Calories)}></TextInput>
-        <View style={styles.SmolcontainerContent}>
-     <FlatList
-      data={[
-          {key: Calories },
-          
-        ]}
-        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-      />
-        </View>
-       </View> 
+      <View style={styles.Smolcontainer}>
+      <View style={{flexDirection: 'row', justifyContent: 'center', alignContent:'space-around'}}>
+      <Text style={styles.titleInput}>Daily calories:</Text>
+      <TextInput style={styles.inputtext}  placeholder='Be honest' value={insidetext} onChangeText={insidetext => setInText(insidetext)}></TextInput>
+      <TouchableOpacity style={styles.circle} onPress={addItems}>
+      <Ionicons name="ios-checkmark" size={30} color="white" style={{alignSelf:'center'}}/>
+      </TouchableOpacity>
+      </View>
      
+   
+      <View style={styles.SmolcontainerContent}>
+  <FlatList
+      data={Calories}
+      renderItem={({item}) => 
+      <View style={{backgroundColor: '#BBB', width:'95%', alignSelf:'center', borderRadius:10, margin:3.5}}>
+      <Text style={styles.item}>{item.value}</Text>
+      </View>}
+    />
+      </View>
+     </View> 
     );
 }
 
-export default InputScreen1;
+export default InputScreen3;
 
 
 const styles = StyleSheet.create({
 titleInput:{
     fontSize: 20,
-    margin: 10
+    marginTop: 15,
+    marginLeft: 10,
   },
   inputtext:{
     borderWidth: 1,
@@ -42,7 +91,7 @@ titleInput:{
   },
   Smolcontainer:{
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -65,7 +114,21 @@ titleInput:{
     flex:1,
     backgroundColor: 'white',
     justifyContent: 'center',
-    width: '50%',
+    width: '100%',
     height: '100%',
-  }
+    
+  
+    
+  },
+  circle: {
+    marginTop: 7,
+    height:50,
+    width:50,
+    borderRadius: 50,
+    backgroundColor:'#ef476f',
+    alignItems: 'center',
+    justifyContent: 'center',
+  
+
+  },
 });

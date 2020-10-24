@@ -136,7 +136,7 @@ useEffect( () => {
     <Text style={{position: 'absolute', top:225, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Health</Text>
     <View style={{position: 'absolute', backgroundColor: 'red', width:220, height:15, top:245, left: 155, borderRadius: 20 }}></View>
     
-    <Text style={{position: 'absolute', top:270, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Energy</Text>
+    <Text style={{position: 'absolute', top:270, left: 330, borderRadius: 20, fontWeight: 'bold' }}>Daily Quests</Text>
     <View style={{position: 'absolute', backgroundColor: 'green', width:220, height:15, top:290, left: 155, borderRadius: 20 }}></View>
     
     <View style={{position: 'absolute', backgroundColor: 'yellow', width:220, height:15, top:335, left: 155, borderRadius: 20 }}></View>

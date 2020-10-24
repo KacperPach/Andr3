@@ -51,7 +51,9 @@ function InputScreen2(props){
         <Ionicons name="md-sad" size={30} color="#ef476f" />
       </View>
       </TouchableOpacity>
+      <View><Text>Great!</Text></View>
      </View> 
+
   );
   }
 
@@ -74,6 +76,7 @@ function InputScreen2(props){
     <Ionicons name="md-sad" size={30} color="white" />
   </View>
   </TouchableOpacity>
+  <View><Text>Don't worry!</Text></View>
  </View> 
   );
   }
@@ -128,5 +131,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderColor: 'red',
       }
-      
     });
