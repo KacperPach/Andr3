@@ -5,19 +5,15 @@ import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, V
 
 
 export default function Statistics({ navigation }){
-    let Counter = 0;
- 
+
+    let Counter = 2;
+    
     const [i, setIState] = useState(0);
     
-    const customData = require('./../components/quests.json');
-        
-    const points1 = customData[i].tier;
-    const points2 = customData[i+1].tier;
-    const points3 = customData[i+2].tier;
-
     const C = () => {
 
       Counter = Counter+1;
+      console.log(Counter)
     }  
 
     function Quest(props) {
@@ -66,6 +62,9 @@ export default function Statistics({ navigation }){
 
         const Day = new Date().getDate();
         //async do dni trza dodać
+        console.log(i);
+        console.log(Time);
+        console.log(Day);
         
         if(Time >= 12)
       {
@@ -82,10 +81,7 @@ export default function Statistics({ navigation }){
       };
     
       const List = () => {
-
-
-        console.log(points1)
-        
+        const customData = require('./../components/quests.json');
         return(
           <View>
             <FlatList
@@ -126,6 +122,7 @@ export default function Statistics({ navigation }){
     <Text>Done: {Counter}/3 </Text>
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
