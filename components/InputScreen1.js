@@ -30,7 +30,6 @@ const load = async() => {
   }
 }
 
-
   useEffect( () => { 
     load();
 
@@ -50,7 +49,8 @@ const load = async() => {
 
       save();
     };
-    
+      //usuwanie do dokończenia 
+ 
     return (
         <View style={styles.Smolcontainer}>
         <View style={{flexDirection: 'row', justifyContent: 'center', alignContent:'space-around'}}>
@@ -64,10 +64,15 @@ const load = async() => {
      
         <View style={styles.SmolcontainerContent}>
     <FlatList
+       
         data={Goals}
         renderItem={({item}) => 
-        <View style={{backgroundColor: '#BBB', width:'95%', alignSelf:'center', borderRadius:10, margin:3.5,}}>
+        <View style={{backgroundColor: '#BBB', width:'95%', alignSelf:'center', borderRadius:10, margin:3.5}}>
+        <TouchableOpacity style={{width:'3%', alignSelf:'flex-end'}} >
+        <Ionicons name="ios-close" size={24} color="black" style={{alignSelf:'flex-end', margin:4}}/>
+        </TouchableOpacity>
         <Text style={styles.item}>{item.value}</Text>
+        
         </View>}
       />
         </View>
@@ -119,9 +124,6 @@ titleInput:{
     justifyContent: 'center',
     width: '100%',
     height: '100%',
-    
-  
-    
   },
   circle: {
     marginTop: 7,

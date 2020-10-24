@@ -20,7 +20,6 @@ import InputScreen4 from '../components/InputScreen4.js';
 export default function  Home({ navigation }){
 
 
-
   const [buttonstate, setButtonState] = useState();
 
   const aHight = useRef( new Animated.Value(100)).current;
