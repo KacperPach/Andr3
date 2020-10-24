@@ -3,7 +3,6 @@ import { Ionicons } from '@expo/vector-icons';
 import {StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-//poooooooooooooooooooog
 function InputScreen3(props) {
    
   const save = async() => {  
