@@ -67,9 +67,9 @@ const load = async() => {
        
         data={Goals}
         renderItem={({item}) => 
-        <View style={{backgroundColor: '#BBB', width:'95%', alignSelf:'center', borderRadius:10, margin:3.5}}>
-        <TouchableOpacity style={{width:'3%', alignSelf:'flex-end'}} >
-        <Ionicons name="ios-close" size={24} color="black" style={{alignSelf:'flex-end', margin:4}}/>
+        <View style={{backgroundColor: '#BBB', width:'95%', alignSelf:'center', borderRadius:10, margin:3.5, flexDirection: 'row-reverse'}}>
+        <TouchableOpacity style={{ flex: 1 , justifyContent: 'center', alignItems:'center', alignSelf: 'center'}} >
+        <Ionicons name="ios-close" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.item}>{item.value}</Text>
         
@@ -95,7 +95,8 @@ titleInput:{
     borderColor: '#000000',
     padding: 8,
     margin: 10,
-    width: 200,
+    width: 218,
+    borderRadius: 6
   },
   Smolcontainer:{
     flex: 1,
@@ -116,7 +117,10 @@ titleInput:{
   item: {
     padding: 10,
     fontSize: 18,
-    height: 44,
+    flex: 10
+    
+    
+
   },
   SmolcontainerContent:{
     flex:1,
