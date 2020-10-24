@@ -3,7 +3,6 @@ import { DrawerContentScrollView } from '@react-navigation/drawer';
 import React, {useState, useRef, useEffect} from 'react';
 import { Animated,ImageBackground, StyleSheet, Text, Button, TouchableOpacity, View, ScrollView, BackHandler, FlatList} from 'react-native';
 
-import Clock from './../components/clockquest.js';
 
 export default function Statistics({ navigation }){
 
@@ -11,7 +10,6 @@ export default function Statistics({ navigation }){
     
     const [i, setIState] = useState(0);
     
-    const [Time, setTime] = useState(11);
 
 
     function Quest(props) {
@@ -50,12 +48,22 @@ export default function Statistics({ navigation }){
         }
       }
 
-      const QuestSet = () => {
-      
-      
+
+
+      function QuestSet(){
+
+        const Time = new Date().getHours();
+
+        const Day = new Date().getDate();
+        //async do dni trza dodać
+        console.log(i);
+        console.log(Time);
+        console.log(Day);
+        
         if(Time >= 12)
       {
         setIState(i+1);
+       
       } 
       else{
         setIState(i);
@@ -64,10 +72,8 @@ export default function Statistics({ navigation }){
         {
           setIState(0)
         }
-      }
-
-
-      
+      };
+    
       const List = () => {
         const customData = require('./../components/quests.json');
         return(
@@ -106,7 +112,7 @@ export default function Statistics({ navigation }){
     </View>
 
     <Button  title = "change quests" onPress={() => QuestSet()}></Button>
-    <Button  title = "show time" onPress={() => {setTime(Time + 1); console.log(Time); console.log(i)}}></Button>
+    <Button  title = "show time" onPress={() => QuestSet()}></Button>
     <Text>Done: {Counter}/3 </Text>
     </View>
   );
