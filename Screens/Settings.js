@@ -9,7 +9,7 @@ export default function Settings({ navigation }){
   
     <View style={styles.container}>
 
-    <ImageBackground source={require('./../assets/ProfileScreen.jpg')} style={styles.image}/>
+    <ImageBackground source={require('./../assets/ProfileScreen.png')} style={styles.image}/>
     
     <View style={styles.top}>
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
