@@ -49,7 +49,7 @@ function InputScreen2(props){
   return(
 
   <View style={styles.SmolcontainerC}>
-      <View>
+  <View style={styles.sliderStyle}>
       <Text style={styles.titleInput}>How do you feel today?</Text>
       </View>
       <TouchableOpacity onPress={() => setSmile(1)} style={styles.circlehappy}>
@@ -60,6 +60,22 @@ function InputScreen2(props){
         <Ionicons name="md-sad" size={30} color="#ef476f" />
       </TouchableOpacity>
       <View><Text>Great!</Text></View>
+      <View style={styles.sliderStyle}>
+    <Text style={styles.titleInput}>How many hours have you slept?</Text>
+      <Slider 
+      style={{width: 100, height: 40, margin: 20}}
+      step={1} 
+      value={Value}
+      onValueChange={value => setValue(value)} 
+    minimumValue={0}
+    maximumValue={24}
+    minimumTrackTintColor="white"
+    maximumTrackTintColor='blue'
+  />
+  <View>
+  <Text>Hours:{Value}</Text>
+  </View>
+  </View>
      </View> 
     
   );
@@ -70,7 +86,7 @@ function InputScreen2(props){
   return(
 
   <View style={styles.SmolcontainerC}>
-  <View>
+  <View style={styles.sliderStyle}>
   <Text style={styles.titleInput}>How do you feel today?</Text>
   </View>
   <TouchableOpacity onPress={() => setSmile(1)} style={styles.circle}>
@@ -81,7 +97,23 @@ function InputScreen2(props){
     <Ionicons name="md-sad" size={30} color="white" />
   </TouchableOpacity>
   <View><Text>Don't worry!</Text></View>
- </View> 
+  <View style={styles.sliderStyle}>
+    <Text style={styles.titleInput}>How many hours have you slept?</Text>
+      <Slider 
+      style={{width: 100, height: 40, margin: 20}}
+      step={1} 
+      value={Value}
+      onValueChange={value => setValue(value)} 
+    minimumValue={0}
+    maximumValue={24}
+    minimumTrackTintColor="white"
+    maximumTrackTintColor='blue'
+  />
+  <View>
+  <Text>Hours:{Value}</Text>
+  </View>
+  </View>
+     </View> 
   );
   }
     else{
