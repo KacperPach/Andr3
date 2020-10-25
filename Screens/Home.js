@@ -172,7 +172,7 @@ useEffect( () => {
       </View> 
 
         <View style={{ backgroundColor:'white', alignSelf:'flex-end', borderWidth: 2, borderColor: 'black', borderRadius: 5, top:170}}> 
-        <Text style={{alignSelf:'center', fontWeight:'bold'}}> Pog debag box</Text>
+        <Text style={{alignSelf:'center', fontWeight:'bold'}}> debug box</Text>
 
         <View style={{flexDirection: 'row', }}>
         <Button title='add' onPress={() => {setStats({energy : stats.energy+20 })}}></Button>
